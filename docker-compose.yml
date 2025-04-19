@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+
+  springboot-microservice-loadbalancer-management-instance1:
+    build:
+      context: ./springboot-microservice-loadbalancer-management
+    image: springboot-microservice-loadbalancer-management-instance1-img
+    container_name: springboot-microservice-loadbalancer-management-instance1-api
+    ports:
+      - "8019:8080"
+    networks:
+      - mysqlnetwork
+
+  springboot-microservice-loadbalancer-management-instance2:
+    build:
+      context: ./springboot-microservice-loadbalancer-management
+    image: springboot-microservice-loadbalancer-management-instance2-img
+    container_name: springboot-microservice-loadbalancer-management-instance2-api
+    ports:
+      - "8020:8080"
+    networks:
+      - mysqlnetwork
+
+####################
+  springboot-microservice-loadbalancer-transactions-instance1:
+    build:
+      context: ./springboot-microservice-loadbalancer-transactions
+    image: springboot-microservice-loadbalancer-transactions-instance1-img
+    container_name: springboot-microservice-loadbalancer-transactions-instance1-api
+    ports:
+      - "8022:8080"
+    networks:
+      - mysqlnetwork
+
+  springboot-microservice-loadbalancer-transactions-instance2:
+    build:
+      context: ./springboot-microservice-loadbalancer-transactions
+    image: springboot-microservice-loadbalancer-transactions-instance2-img
+    container_name: springboot-microservice-loadbalancer-transactions-instance2-api
+    ports:
+      - "8023:8080"
+    networks:
+      - mysqlnetwork
+
+####################
+  springboot-microservice-loadbalancer-billing-instance1:
+    build:
+      context: ./springboot-microservice-loadbalancer-billing
+    image: springboot-microservice-loadbalancer-billing-instance1-img
+    container_name: springboot-microservice-loadbalancer-billing-instance1-api
+    ports:
+      - "8025:8080"
+    networks:
+      - mysqlnetwork
+
+  springboot-microservice-loadbalancer-billing-instance2:
+    build:
+      context: ./springboot-microservice-loadbalancer-billing
+    image: springboot-microservice-loadbalancer-billing-instance2-img
+    container_name: springboot-microservice-loadbalancer-billing-instance2-api
+    ports:
+      - "8026:8080"
+    networks:
+      - mysqlnetwork
+
+####################
+  springboot-microservice-loadbalancer-dispute-instance1:
+    build:
+      context: ./springboot-microservice-loadbalancer-dispute
+    image: springboot-microservice-loadbalancer-dispute-instance1-img
+    container_name: springboot-microservice-loadbalancer-dispute-instance1-api
+    ports:
+      - "8028:8080"
+    networks:
+      - mysqlnetwork
+
+  springboot-microservice-loadbalancer-dispute-instance2:
+    build:
+      context: ./springboot-microservice-loadbalancer-dispute
+    image: springboot-microservice-loadbalancer-dispute-instance2-img
+    container_name: springboot-microservice-loadbalancer-dispute-instance2-api
+    ports:
+      - "8029:8080"
+    networks:
+      - mysqlnetwork
+
+####################
+networks:
+  mysqlnetwork:
+    external: true  # 使用外部已存在的網路
